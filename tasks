@@ -1,0 +1,19 @@
+=Ordering and Purchasing of products or services. /
+=Computation of orders and details.(Invoice) /
+=Returns and Defective Products with comments /
+=Client records and details /
+=Type of Payment /
+
+=Summary of profit per day and per month x
+=Number of customer per day and per month x
+=Can monitor if the product is enough or depleted /
+=Has a simple inventory for product or services record. /
+
+receipt query
+SELECT receipt_id, customers.name as customer_name, count(items.name), receipt.qty, paymenttype.paymentType, totalPrice
+from receipt
+INNER JOIN customers on receipt.customer_id = customers.id
+INNER JOIN items on receipt.item_id = items.id
+INNER JOIN paymenttype on receipt.paymentTypeId = paymenttype.id
+group by receipt_id
+order by receipt_id desc
